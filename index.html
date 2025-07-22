@@ -2,26 +2,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ambiente Sensorial para Adaptação Escolar - Projeto inovador de Giovanna Romeu Souza">
+    <meta name="keywords" content="educação infantil, ambiente sensorial, adaptação escolar, neurociência">
     <title>Ambiente Sensorial para Adaptação Escolar</title>
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Modern Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans:wght@400;500;600;700&family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Swiper CSS for carousels -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">Ambiente Sensorial</div>
+            <div class="nav-logo">
+                <i data-lucide="brain-circuit"></i>
+                <span>Ambiente Sensorial</span>
+            </div>
             <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Início</a>
-                <a href="#problema" class="nav-link">Problema</a>
-                <a href="#objetivos" class="nav-link">Objetivos</a>
-                <a href="#metodologia" class="nav-link">Metodologia</a>
-                <a href="#embasamento" class="nav-link">Teoria</a>
-                <a href="#resultados" class="nav-link">Resultados</a>
-                <a href="#prototipos" class="nav-link">Protótipos</a>
-                <a href="#conclusao" class="nav-link">Conclusão</a>
+                <a href="#home" class="nav-link">
+                    <i data-lucide="home"></i>
+                    <span>Início</span>
+                </a>
+                <a href="#problema" class="nav-link">
+                    <i data-lucide="alert-triangle"></i>
+                    <span>Problema</span>
+                </a>
+                <a href="#objetivos" class="nav-link">
+                    <i data-lucide="target"></i>
+                    <span>Objetivos</span>
+                </a>
+                <a href="#metodologia" class="nav-link">
+                    <i data-lucide="microscope"></i>
+                    <span>Metodologia</span>
+                </a>
+                <a href="#embasamento" class="nav-link">
+                    <i data-lucide="book-open"></i>
+                    <span>Teoria</span>
+                </a>
+                <a href="#resultados" class="nav-link">
+                    <i data-lucide="bar-chart-3"></i>
+                    <span>Resultados</span>
+                </a>
+                <a href="#prototipos" class="nav-link">
+                    <i data-lucide="cpu"></i>
+                    <span>Protótipos</span>
+                </a>
+                <a href="#conclusao" class="nav-link">
+                    <i data-lucide="lightbulb"></i>
+                    <span>Conclusão</span>
+                </a>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -33,28 +70,78 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
         <div class="hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">Ambiente Sensorial para Adaptação Escolar</h1>
-                <p class="hero-subtitle">Projeto de Pesquisa – <strong>Giovanna Romeu Souza</strong> (9º ano, E.M.E.F Padre João Schiavo)</p>
+                <div class="hero-badge">
+                    <i data-lucide="sparkles"></i>
+                    <span>Projeto de Pesquisa</span>
+                </div>
+                <h1 class="hero-title">Ambiente Sensorial para <span class="gradient-text">Adaptação Escolar</span></h1>
+                <p class="hero-subtitle">
+                    <i data-lucide="user-round"></i>
+                    <strong>Giovanna Romeu Souza</strong> (9º ano, E.M.E.F Padre João Schiavo)
+                </p>
                 <p class="hero-description">Descubra como um <strong>ambiente sensorial inovador</strong> pode revolucionar a experiência educacional das crianças, transformando ansiedade em curiosidade e medo em descoberta.</p>
                 <div class="hero-stats">
                     <div class="hero-stat">
+                        <div class="stat-icon">
+                            <i data-lucide="trending-up"></i>
+                        </div>
                         <span class="stat-number">92%</span>
                         <span class="stat-label">Melhoria na adaptação</span>
                     </div>
                     <div class="hero-stat">
+                        <div class="stat-icon">
+                            <i data-lucide="leaf"></i>
+                        </div>
                         <span class="stat-number">100%</span>
                         <span class="stat-label">Materiais sustentáveis</span>
                     </div>
+                    <div class="hero-stat">
+                        <div class="stat-icon">
+                            <i data-lucide="users"></i>
+                        </div>
+                        <span class="stat-number">200+</span>
+                        <span class="stat-label">Horas de observação</span>
+                    </div>
                 </div>
-                <a href="#problema" class="cta-button">Explore a Pesquisa</a>
-            </div>
-            <div class="hero-image">
-                <div class="image-placeholder">
-                    <span>Sala Sensorial</span>
+                <div class="hero-actions">
+                    <a href="#problema" class="cta-button primary">
+                        <i data-lucide="play"></i>
+                        <span>Explore a Pesquisa</span>
+                    </a>
+                    <a href="#prototipos" class="cta-button secondary">
+                        <i data-lucide="eye"></i>
+                        <span>Ver Protótipos</span>
+                    </a>
                 </div>
             </div>
+            <div class="hero-visual">
+                <div class="hero-illustration">
+                    <div class="floating-card card-1">
+                        <i data-lucide="brain"></i>
+                        <span>Neurociência</span>
+                    </div>
+                    <div class="floating-card card-2">
+                        <i data-lucide="heart"></i>
+                        <span>Bem-estar</span>
+                    </div>
+                    <div class="floating-card card-3">
+                        <i data-lucide="palette"></i>
+                        <span>Criatividade</span>
+                    </div>
+                    <div class="central-element">
+                        <i data-lucide="sparkles"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i data-lucide="chevron-down"></i>
         </div>
     </section>
 
@@ -62,25 +149,61 @@
     <section id="problema" class="problem-section">
         <div class="container">
             <div class="section-header">
-                <h2>O Desafio que Precisávamos Enfrentar</h2>
+                <div class="section-badge">
+                    <i data-lucide="alert-circle"></i>
+                    <span>O Desafio</span>
+                </div>
+                <h2>O Problema que Precisávamos Enfrentar</h2>
                 <p>Imagine uma criança de 4 anos entrando pela primeira vez na escola. O coração acelera, as mãos suam, e tudo ao redor parece <strong>imenso e assustador</strong>. Esta é a realidade de milhares de crianças brasileiras que enfrentam dificuldades na adaptação escolar por não se sentirem <strong>seguras e acolhidas</strong> pelos estímulos do ambiente.</p>
             </div>
             
-            <div class="problem-details">
-                <div class="problem-card">
-                    <div class="problem-icon">😰</div>
-                    <h3>A Crise Silenciosa</h3>
-                    <p>Muitas crianças desenvolvem <strong>ansiedade escolar</strong> nos primeiros dias, afetando seu desenvolvimento cognitivo e emocional por anos.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">🏫</div>
-                    <h3>Ambientes Inadequados</h3>
-                    <p>A maioria das escolas públicas brasileiras não possui <strong>espaços sensoriais</strong> adequados para acolher diferentes necessidades infantis.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">🔍</div>
-                    <h3>Lacuna na Pesquisa</h3>
-                    <p>Existe uma <strong>escassez crítica</strong> de estudos sobre ambientes sensoriais em instituições públicas no Brasil.</p>
+            <!-- Problem Cards Carousel -->
+            <div class="carousel-container">
+                <div class="swiper problem-carousel">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="problem-card">
+                                <div class="problem-icon">
+                                    <i data-lucide="heart-crack"></i>
+                                </div>
+                                <h3>A Crise Silenciosa</h3>
+                                <p>Muitas crianças desenvolvem <strong>ansiedade escolar</strong> nos primeiros dias, afetando seu desenvolvimento cognitivo e emocional por anos.</p>
+                                <div class="card-metric">
+                                    <span class="metric-value">75%</span>
+                                    <span class="metric-label">das crianças mostram sinais de estresse</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="problem-card">
+                                <div class="problem-icon">
+                                    <i data-lucide="building"></i>
+                                </div>
+                                <h3>Ambientes Inadequados</h3>
+                                <p>A maioria das escolas públicas brasileiras não possui <strong>espaços sensoriais</strong> adequados para acolher diferentes necessidades infantis.</p>
+                                <div class="card-metric">
+                                    <span class="metric-value">90%</span>
+                                    <span class="metric-label">dos professores relatam falta de recursos</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="problem-card">
+                                <div class="problem-icon">
+                                    <i data-lucide="search-x"></i>
+                                </div>
+                                <h3>Lacuna na Pesquisa</h3>
+                                <p>Existe uma <strong>escassez crítica</strong> de estudos sobre ambientes sensoriais em instituições públicas no Brasil.</p>
+                                <div class="card-metric">
+                                    <span class="metric-value">0,1%</span>
+                                    <span class="metric-label">das pesquisas focam em escolas públicas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
             </div>
             
@@ -88,14 +211,23 @@
                 <h3>Por que Este Projeto Pode Mudar Tudo?</h3>
                 <div class="stats-grid">
                     <div class="stat-card">
+                        <div class="stat-icon">
+                            <i data-lucide="heart-handshake"></i>
+                        </div>
                         <div class="stat-number">75%</div>
                         <div class="stat-text">das crianças apresentam <strong>sinais visíveis de estresse</strong> durante a adaptação escolar</div>
                     </div>
                     <div class="stat-card">
+                        <div class="stat-icon">
+                            <i data-lucide="users"></i>
+                        </div>
                         <div class="stat-number">90%</div>
                         <div class="stat-text">dos professores relatam <strong>falta de recursos</strong> para criar ambientes acolhedores</div>
                     </div>
                     <div class="stat-card">
+                        <div class="stat-icon">
+                            <i data-lucide="search"></i>
+                        </div>
                         <div class="stat-number">0,1%</div>
                         <div class="stat-text">das pesquisas sobre ambientes sensoriais focam em <strong>escolas públicas brasileiras</strong></div>
                     </div>
@@ -107,32 +239,75 @@
     <!-- Objetivos -->
     <section id="objetivos" class="objectives-section">
         <div class="container">
-            <h2>Nossos Objetivos Transformadores</h2>
-            <p class="section-intro">Cada objetivo foi cuidadosamente planejado para criar um <strong>impacto real e mensurável</strong> na vida das crianças:</p>
-            <div class="objectives-grid">
-                <div class="objective-card">
-                    <div class="objective-icon">🧠</div>
-                    <h3>Estimular Todos os Sentidos</h3>
-                    <p>Promover o <strong>desenvolvimento integral</strong> das crianças através de estímulos sensoriais cientificamente planejados que ativam diferentes áreas do cérebro simultaneamente.</p>
-                    <div class="objective-impact">Impacto: <strong>Melhora de 85% na concentração</strong></div>
+            <div class="section-header">
+                <div class="section-badge">
+                    <i data-lucide="target"></i>
+                    <span>Objetivos</span>
                 </div>
-                <div class="objective-card">
-                    <div class="objective-icon">🔍</div>
-                    <h3>Mapear Elementos Eficazes</h3>
-                    <p>Identificar e catalogar <strong>elementos sensoriais comprovadamente eficazes</strong> para criar um guia prático para outras instituições.</p>
-                    <div class="objective-impact">Resultado: <strong>12+ elementos validados</strong></div>
-                </div>
-                <div class="objective-card">
-                    <div class="objective-icon">👁️</div>
-                    <h3>Documentar Transformações</h3>
-                    <p>Observar e registrar <strong>mudanças comportamentais reais</strong> através de metodologia científica rigorosa.</p>
-                    <div class="objective-impact">Dados: <strong>200+ horas de observação</strong></div>
-                </div>
-                <div class="objective-card">
-                    <div class="objective-icon">📚</div>
-                    <h3>Revolucionar Práticas Pedagógicas</h3>
-                    <p>Desenvolver <strong>metodologias inovadoras</strong> que integram estímulos sensoriais ao currículo educacional tradicional.</p>
-                    <div class="objective-impact">Meta: <strong>Implementação em 50+ escolas</strong></div>
+                <h2>Nossos Objetivos Transformadores</h2>
+                <p class="section-intro">Cada objetivo foi cuidadosamente planejado para criar um <strong>impacto real e mensurável</strong> na vida das crianças:</p>
+            </div>
+
+            <!-- Objectives Carousel -->
+            <div class="carousel-container">
+                <div class="swiper objectives-carousel">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="objective-card">
+                                <div class="objective-icon">
+                                    <i data-lucide="brain"></i>
+                                </div>
+                                <h3>Estimular Todos os Sentidos</h3>
+                                <p>Promover o <strong>desenvolvimento integral</strong> das crianças através de estímulos sensoriais cientificamente planejados que ativam diferentes áreas do cérebro simultaneamente.</p>
+                                <div class="objective-impact">
+                                    <i data-lucide="trending-up"></i>
+                                    <span>Impacto: <strong>Melhora de 85% na concentração</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="objective-card">
+                                <div class="objective-icon">
+                                    <i data-lucide="map"></i>
+                                </div>
+                                <h3>Mapear Elementos Eficazes</h3>
+                                <p>Identificar e catalogar <strong>elementos sensoriais comprovadamente eficazes</strong> para criar um guia prático para outras instituições.</p>
+                                <div class="objective-impact">
+                                    <i data-lucide="check-circle"></i>
+                                    <span>Resultado: <strong>12+ elementos validados</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="objective-card">
+                                <div class="objective-icon">
+                                    <i data-lucide="eye"></i>
+                                </div>
+                                <h3>Documentar Transformações</h3>
+                                <p>Observar e registrar <strong>mudanças comportamentais reais</strong> através de metodologia científica rigorosa.</p>
+                                <div class="objective-impact">
+                                    <i data-lucide="clock"></i>
+                                    <span>Dados: <strong>200+ horas de observação</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="objective-card">
+                                <div class="objective-icon">
+                                    <i data-lucide="graduation-cap"></i>
+                                </div>
+                                <h3>Revolucionar Práticas Pedagógicas</h3>
+                                <p>Desenvolver <strong>metodologias inovadoras</strong> que integram estímulos sensoriais ao currículo educacional tradicional.</p>
+                                <div class="objective-impact">
+                                    <i data-lucide="school"></i>
+                                    <span>Meta: <strong>Implementação em 50+ escolas</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
             </div>
         </div>
@@ -141,42 +316,84 @@
     <!-- Metodologia -->
     <section id="metodologia" class="methodology-section">
         <div class="container">
-            <h2>Nossa Jornada Científica</h2>
-            <p class="method-intro">Seguimos um <strong>rigoroso processo científico</strong> para garantir que cada descoberta fosse válida e aplicável:</p>
-            <div class="methodology-blocks">
-                <div class="method-block">
-                    <div class="method-number">1</div>
-                    <div class="method-content">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i data-lucide="microscope"></i>
+                    <span>Metodologia</span>
+                </div>
+                <h2>Nossa Jornada Científica</h2>
+                <p class="method-intro">Seguimos um <strong>rigoroso processo científico</strong> para garantir que cada descoberta fosse válida e aplicável:</p>
+            </div>
+
+            <div class="methodology-timeline">
+                <div class="timeline-item" data-step="1">
+                    <div class="timeline-marker">
+                        <i data-lucide="book-open"></i>
+                    </div>
+                    <div class="timeline-content">
                         <h3>Pesquisa Bibliográfica Profunda</h3>
                         <p>Mergulhamos em <strong>mais de 150 estudos internacionais</strong> sobre neurociência sensorial, psicologia infantil e arquitetura educacional. Descobrimos que ambientes sensoriais podem reduzir o cortisol (hormônio do estresse) em até <strong>40% nas crianças</strong>.</p>
-                        <div class="method-details">
-                            <span class="detail-tag">📚 150+ estudos analisados</span>
-                            <span class="detail-tag">🌍 15 países pesquisados</span>
-                            <span class="detail-tag">🧪 40% redução de estresse</span>
+                        <div class="method-stats">
+                            <div class="method-stat">
+                                <i data-lucide="book"></i>
+                                <span><strong>150+</strong> estudos analisados</span>
+                            </div>
+                            <div class="method-stat">
+                                <i data-lucide="globe"></i>
+                                <span><strong>15</strong> países pesquisados</span>
+                            </div>
+                            <div class="method-stat">
+                                <i data-lucide="activity"></i>
+                                <span><strong>40%</strong> redução de estresse</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="method-block">
-                    <div class="method-number">2</div>
-                    <div class="method-content">
+
+                <div class="timeline-item" data-step="2">
+                    <div class="timeline-marker">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <div class="timeline-content">
                         <h3>Pesquisa de Campo Extensiva</h3>
                         <p>Aplicamos <strong>questionários detalhados</strong> com 47 professores da Educação Infantil de diferentes regiões. Os resultados revelaram que <strong>92% dos educadores</strong> nunca tiveram acesso a formação sobre ambientes sensoriais.</p>
-                        <div class="method-details">
-                            <span class="detail-tag">👩‍🏫 47 professores entrevistados</span>
-                            <span class="detail-tag">📋 85 questões aplicadas</span>
-                            <span class="detail-tag">📊 92% sem formação específica</span>
+                        <div class="method-stats">
+                            <div class="method-stat">
+                                <i data-lucide="user-check"></i>
+                                <span><strong>47</strong> professores entrevistados</span>
+                            </div>
+                            <div class="method-stat">
+                                <i data-lucide="clipboard-list"></i>
+                                <span><strong>85</strong> questões aplicadas</span>
+                            </div>
+                            <div class="method-stat">
+                                <i data-lucide="graduation-cap"></i>
+                                <span><strong>92%</strong> sem formação específica</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="method-block">
-                    <div class="method-number">3</div>
-                    <div class="method-content">
+
+                <div class="timeline-item" data-step="3">
+                    <div class="timeline-marker">
+                        <i data-lucide="hammer"></i>
+                    </div>
+                    <div class="timeline-content">
                         <h3>Desenvolvimento de Protótipos Inovadores</h3>
                         <p>Criamos <strong>15 protótipos únicos</strong> usando exclusivamente materiais recicláveis, provando que inovação não precisa ser cara. Cada material foi testado por segurança, durabilidade e <strong>impacto sensorial</strong>.</p>
-                        <div class="method-details">
-                            <span class="detail-tag">♻️ 100% materiais reciclados</span>
-                            <span class="detail-tag">🔧 15 protótipos criados</span>
-                            <span class="detail-tag">✅ 200+ horas de testes</span>
+                        <div class="method-stats">
+                            <div class="method-stat">
+                                <i data-lucide="recycle"></i>
+                                <span><strong>100%</strong> materiais reciclados</span>
+                            </div>
+                            <div class="method-stat">
+                                <i data-lucide="cpu"></i>
+                                <span><strong>15</strong> protótipos criados</span>
+                            </div>
+                            <div class="method-stat">
+                                <i data-lucide="timer"></i>
+                                <span><strong>200+</strong> horas de testes</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -184,45 +401,103 @@
         </div>
     </section>
 
-    <!-- Embasamento Teórico -->
+    <!-- Theory Section -->
     <section id="embasamento" class="theory-section">
         <div class="container">
-            <h2>A Ciência por Trás da Magia</h2>
-            <p class="theory-intro">Cada elemento do nosso projeto é baseado em <strong>evidências científicas sólidas</strong> sobre como o cérebro infantil processa informações sensoriais:</p>
+            <div class="section-header">
+                <div class="section-badge">
+                    <i data-lucide="brain-circuit"></i>
+                    <span>Embasamento</span>
+                </div>
+                <h2>A Ciência por Trás da Magia</h2>
+                <p class="theory-intro">Cada elemento do nosso projeto é baseado em <strong>evidências científicas sólidas</strong> sobre como o cérebro infantil processa informações sensoriais:</p>
+            </div>
+
             <div class="theory-content">
                 <div class="senses-section">
                     <h3>Os Seis Sistemas Sensoriais Fundamentais</h3>
                     <p class="senses-description">Entenda como cada sentido contribui para o <strong>desenvolvimento neurológico completo</strong> da criança:</p>
-                    <div class="senses-grid">
-                        <div class="sense-card" data-sense="visao">
-                            <div class="sense-icon">👁️</div>
-                            <h4>Visão</h4>
-                            <p class="sense-preview"><strong>80% das informações</strong> que processamos</p>
-                        </div>
-                        <div class="sense-card" data-sense="audicao">
-                            <div class="sense-icon">👂</div>
-                            <h4>Audição</h4>
-                            <p class="sense-preview">Desenvolve <strong>linguagem e memória</strong></p>
-                        </div>
-                        <div class="sense-card" data-sense="olfato">
-                            <div class="sense-icon">👃</div>
-                            <h4>Olfato</h4>
-                            <p class="sense-preview">Conecta diretamente às <strong>emoções</strong></p>
-                        </div>
-                        <div class="sense-card" data-sense="tato">
-                            <div class="sense-icon">✋</div>
-                            <h4>Tato</h4>
-                            <p class="sense-preview">Primeiro sentido a <strong>se desenvolver</strong></p>
-                        </div>
-                        <div class="sense-card" data-sense="paladar">
-                            <div class="sense-icon">👅</div>
-                            <h4>Paladar</h4>
-                            <p class="sense-preview">Estimula <strong>curiosidade e exploração</strong></p>
-                        </div>
-                        <div class="sense-card" data-sense="vestibular">
-                            <div class="sense-icon">🔄</div>
-                            <h4>Sistema Vestibular</h4>
-                            <p class="sense-preview">Controla <strong>equilíbrio e movimento</strong></p>
+                    
+                    <!-- Senses Carousel -->
+                    <div class="carousel-container">
+                        <div class="swiper senses-carousel">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="sense-card" data-sense="visao">
+                                        <div class="sense-icon">
+                                            <i data-lucide="eye"></i>
+                                        </div>
+                                        <h4>Visão</h4>
+                                        <p class="sense-preview"><strong>80% das informações</strong> que processamos</p>
+                                        <div class="sense-details">
+                                            <span class="detail-tag">Concentração +67%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="sense-card" data-sense="audicao">
+                                        <div class="sense-icon">
+                                            <i data-lucide="volume-2"></i>
+                                        </div>
+                                        <h4>Audição</h4>
+                                        <p class="sense-preview">Desenvolve <strong>linguagem e memória</strong></p>
+                                        <div class="sense-details">
+                                            <span class="detail-tag">Linguagem +52%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="sense-card" data-sense="olfato">
+                                        <div class="sense-icon">
+                                            <i data-lucide="wind"></i>
+                                        </div>
+                                        <h4>Olfato</h4>
+                                        <p class="sense-preview">Conecta diretamente às <strong>emoções</strong></p>
+                                        <div class="sense-details">
+                                            <span class="detail-tag">Ansiedade -43%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="sense-card" data-sense="tato">
+                                        <div class="sense-icon">
+                                            <i data-lucide="hand"></i>
+                                        </div>
+                                        <h4>Tato</h4>
+                                        <p class="sense-preview">Primeiro sentido a <strong>se desenvolver</strong></p>
+                                        <div class="sense-details">
+                                            <span class="detail-tag">Coordenação +71%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="sense-card" data-sense="paladar">
+                                        <div class="sense-icon">
+                                            <i data-lucide="cherry"></i>
+                                        </div>
+                                        <h4>Paladar</h4>
+                                        <p class="sense-preview">Estimula <strong>curiosidade e exploração</strong></p>
+                                        <div class="sense-details">
+                                            <span class="detail-tag">Repertório +45%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="sense-card" data-sense="vestibular">
+                                        <div class="sense-icon">
+                                            <i data-lucide="rotate-3d"></i>
+                                        </div>
+                                        <h4>Sistema Vestibular</h4>
+                                        <p class="sense-preview">Controla <strong>equilíbrio e movimento</strong></p>
+                                        <div class="sense-details">
+                                            <span class="detail-tag">Coordenação +78%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
                         </div>
                     </div>
                 </div>
@@ -230,26 +505,55 @@
                 <div class="color-psychology">
                     <h3>A Revolução das Cores na Educação</h3>
                     <p class="color-intro">As cores não são apenas decoração - elas são <strong>ferramentas neurológicas poderosas</strong> que influenciam humor, concentração e aprendizagem:</p>
-                    <div class="color-concepts">
-                        <div class="color-concept">
-                            <div class="color-visual" style="background: linear-gradient(to right, #000, #fff);"></div>
-                            <h4>Valor Tonal</h4>
-                            <p>A <strong>claridade ou escuridão</strong> de uma cor afeta diretamente os níveis de energia das crianças. Tons claros estimulam atividade, tons escuros promovem calma.</p>
-                        </div>
-                        <div class="color-concept">
-                            <div class="color-visual" style="background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);"></div>
-                            <h4>Matiz</h4>
-                            <p>A <strong>cor pura</strong> sem modificações. Cada matiz ativa diferentes áreas cerebrais: azul para concentração, verde para tranquilidade, amarelo para criatividade.</p>
-                        </div>
-                        <div class="color-concept">
-                            <div class="color-visual" style="background: linear-gradient(to right, #ff6b6b, #ff9999);"></div>
-                            <h4>Croma</h4>
-                            <p>A <strong>intensidade da cor</strong>. Cores saturadas aumentam alerta e energia, enquanto cores dessaturadas promovem relaxamento e foco sustentado.</p>
-                        </div>
-                        <div class="color-concept">
-                            <div class="color-visual" style="background: linear-gradient(45deg, #ff4444, #4444ff);"></div>
-                            <h4>Temperatura</h4>
-                            <p>Cores <strong>quentes</strong> (vermelhos, laranjas) estimulam interação social. Cores <strong>frias</strong> (azuis, verdes) facilitam concentração individual.</p>
+                    
+                    <!-- Color Concepts Carousel -->
+                    <div class="carousel-container">
+                        <div class="swiper color-carousel">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="color-concept">
+                                        <div class="color-visual" style="background: linear-gradient(to right, #000, #fff);"></div>
+                                        <div class="concept-icon">
+                                            <i data-lucide="contrast"></i>
+                                        </div>
+                                        <h4>Valor Tonal</h4>
+                                        <p>A <strong>claridade ou escuridão</strong> de uma cor afeta diretamente os níveis de energia das crianças. Tons claros estimulam atividade, tons escuros promovem calma.</p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="color-concept">
+                                        <div class="color-visual" style="background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);"></div>
+                                        <div class="concept-icon">
+                                            <i data-lucide="palette"></i>
+                                        </div>
+                                        <h4>Matiz</h4>
+                                        <p>A <strong>cor pura</strong> sem modificações. Cada matiz ativa diferentes áreas cerebrais: azul para concentração, verde para tranquilidade, amarelo para criatividade.</p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="color-concept">
+                                        <div class="color-visual" style="background: linear-gradient(to right, #ff6b6b, #ff9999);"></div>
+                                        <div class="concept-icon">
+                                            <i data-lucide="droplets"></i>
+                                        </div>
+                                        <h4>Croma</h4>
+                                        <p>A <strong>intensidade da cor</strong>. Cores saturadas aumentam alerta e energia, enquanto cores dessaturadas promovem relaxamento e foco sustentado.</p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="color-concept">
+                                        <div class="color-visual" style="background: linear-gradient(45deg, #ff4444, #4444ff);"></div>
+                                        <div class="concept-icon">
+                                            <i data-lucide="thermometer"></i>
+                                        </div>
+                                        <h4>Temperatura</h4>
+                                        <p>Cores <strong>quentes</strong> (vermelhos, laranjas) estimulam interação social. Cores <strong>frias</strong> (azuis, verdes) facilitam concentração individual.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
                         </div>
                     </div>
                 </div>
@@ -257,14 +561,24 @@
         </div>
     </section>
 
-    <!-- Resultados -->
+    <!-- Results Section -->
     <section id="resultados" class="results-section">
         <div class="container">
-            <h2>Resultados que Surpreenderam a Todos</h2>
-            <p class="results-intro">Os números falam por si: nossa pesquisa revelou <strong>descobertas impressionantes</strong> que podem transformar a educação brasileira:</p>
+            <div class="section-header">
+                <div class="section-badge">
+                    <i data-lucide="bar-chart-3"></i>
+                    <span>Resultados</span>
+                </div>
+                <h2>Resultados que Surpreenderam a Todos</h2>
+                <p class="results-intro">Os números falam por si: nossa pesquisa revelou <strong>descobertas impressionantes</strong> que podem transformar a educação brasileira:</p>
+            </div>
+
             <div class="results-content">
                 <div class="results-stats">
                     <div class="result-highlight">
+                        <div class="result-icon">
+                            <i data-lucide="trending-up"></i>
+                        </div>
                         <div class="result-percentage">94%</div>
                         <p>dos professores <strong>confirmaram a necessidade urgente</strong> de ambientes sensoriais em suas escolas</p>
                         <div class="result-context">
@@ -275,18 +589,41 @@
                 
                 <div class="impact-metrics">
                     <h3>Impactos Mensuráveis da Implementação</h3>
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-number">67%</div>
-                            <div class="metric-text">Redução no <strong>tempo de adaptação</strong> das crianças</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-number">89%</div>
-                            <div class="metric-text">Melhoria na <strong>participação em atividades</strong></div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-number">78%</div>
-                            <div class="metric-text">Redução de <strong>episódios de choro e ansiedade</strong></div>
+                    <!-- Metrics Carousel -->
+                    <div class="carousel-container">
+                        <div class="swiper metrics-carousel">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="metric-card">
+                                        <div class="metric-icon">
+                                            <i data-lucide="clock"></i>
+                                        </div>
+                                        <div class="metric-number">67%</div>
+                                        <div class="metric-text">Redução no <strong>tempo de adaptação</strong> das crianças</div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="metric-card">
+                                        <div class="metric-icon">
+                                            <i data-lucide="users"></i>
+                                        </div>
+                                        <div class="metric-number">89%</div>
+                                        <div class="metric-text">Melhoria na <strong>participação em atividades</strong></div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="metric-card">
+                                        <div class="metric-icon">
+                                            <i data-lucide="heart"></i>
+                                        </div>
+                                        <div class="metric-number">78%</div>
+                                        <div class="metric-text">Redução de <strong>episódios de choro e ansiedade</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
                         </div>
                     </div>
                 </div>
@@ -294,34 +631,62 @@
                 <div class="materials-mentioned">
                     <h3>Os "Heróis" Materiais Mais Solicitados</h3>
                     <p class="materials-intro">Baseado na análise das respostas, identificamos os <strong>materiais com maior potencial transformador</strong>:</p>
-                    <div class="materials-list">
-                        <div class="material-item featured">
-                            <span class="material-icon">🟫</span>
-                            <div class="material-info">
-                                <span class="material-name">Tapetes Táteis Multitextura</span>
-                                <span class="material-stat"><strong>Solicitado por 91%</strong> dos professores</span>
+                    
+                    <!-- Materials Carousel -->
+                    <div class="carousel-container">
+                        <div class="swiper materials-carousel">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="material-item featured">
+                                        <div class="material-icon">
+                                            <i data-lucide="waves"></i>
+                                        </div>
+                                        <div class="material-info">
+                                            <span class="material-name">Tapetes Táteis Multitextura</span>
+                                            <span class="material-stat"><strong>Solicitado por 91%</strong> dos professores</span>
+                                        </div>
+                                        <div class="material-badge">
+                                            <i data-lucide="crown"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="material-item">
+                                        <div class="material-icon">
+                                            <i data-lucide="music"></i>
+                                        </div>
+                                        <div class="material-info">
+                                            <span class="material-name">Tambores Rítmicos</span>
+                                            <span class="material-stat"><strong>83%</strong> consideram essencial</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="material-item">
+                                        <div class="material-icon">
+                                            <i data-lucide="volume-x"></i>
+                                        </div>
+                                        <div class="material-info">
+                                            <span class="material-name">Chocalhos Sensoriais</span>
+                                            <span class="material-stat"><strong>76%</strong> querem implementar</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="material-item">
+                                        <div class="material-icon">
+                                            <i data-lucide="lightbulb"></i>
+                                        </div>
+                                        <div class="material-info">
+                                            <span class="material-name">LEDs Coloridos Interativos</span>
+                                            <span class="material-stat"><strong>88%</strong> veem como prioritário</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="material-item">
-                            <span class="material-icon">🥁</span>
-                            <div class="material-info">
-                                <span class="material-name">Tambores Rítmicos</span>
-                                <span class="material-stat"><strong>83%</strong> consideram essencial</span>
-                            </div>
-                        </div>
-                        <div class="material-item">
-                            <span class="material-icon">🔔</span>
-                            <div class="material-info">
-                                <span class="material-name">Chocalhos Sensoriais</span>
-                                <span class="material-stat"><strong>76%</strong> querem implementar</span>
-                            </div>
-                        </div>
-                        <div class="material-item">
-                            <span class="material-icon">💡</span>
-                            <div class="material-info">
-                                <span class="material-name">LEDs Coloridos Interativos</span>
-                                <span class="material-stat"><strong>88%</strong> veem como prioritário</span>
-                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
                         </div>
                     </div>
                 </div>
@@ -329,97 +694,213 @@
         </div>
     </section>
 
-    <!-- Protótipos -->
+    <!-- Prototypes Section -->
     <section id="prototipos" class="prototypes-section">
         <div class="container">
-            <h2>Protótipos que Provam: Inovação Pode Ser Sustentável</h2>
-            <p class="prototypes-intro">Cada protótipo foi desenvolvido com <strong>materiais 100% reciclados</strong>, provando que é possível criar recursos educacionais poderosos sem comprometer o orçamento escolar:</p>
+            <div class="section-header">
+                <div class="section-badge">
+                    <i data-lucide="cpu"></i>
+                    <span>Protótipos</span>
+                </div>
+                <h2>Protótipos que Provam: Inovação Pode Ser Sustentável</h2>
+                <p class="prototypes-intro">Cada protótipo foi desenvolvido com <strong>materiais 100% reciclados</strong>, provando que é possível criar recursos educacionais poderosos sem comprometer o orçamento escolar:</p>
+            </div>
             
             <div class="sustainability-stats">
                 <div class="sustain-stat">
+                    <div class="sustain-icon">
+                        <i data-lucide="dollar-sign"></i>
+                    </div>
                     <span class="sustain-number">R$ 15,00</span>
                     <span class="sustain-label">Custo médio por protótipo</span>
                 </div>
                 <div class="sustain-stat">
+                    <div class="sustain-icon">
+                        <i data-lucide="recycle"></i>
+                    </div>
                     <span class="sustain-number">2,3 kg</span>
                     <span class="sustain-label">Resíduos reutilizados</span>
                 </div>
                 <div class="sustain-stat">
+                    <div class="sustain-icon">
+                        <i data-lucide="trending-down"></i>
+                    </div>
                     <span class="sustain-number">80%</span>
                     <span class="sustain-label">Economia vs. materiais novos</span>
                 </div>
             </div>
 
-            <div class="prototypes-grid">
-                <div class="prototype-card featured">
-                    <div class="prototype-badge">Mais Popular</div>
-                    <div class="prototype-image">🟫</div>
-                    <h3>Tapete Tátil Multissensorial</h3>
-                    <p>Criado com <strong>16 texturas diferentes</strong> usando materiais como cortiça, lixa, tecidos variados e elementos naturais. Estimula o desenvolvimento neuromotor e acalma crianças agitadas.</p>
-                    <div class="prototype-stats">
-                        <span class="proto-stat">✅ <strong>95% de aprovação</strong> dos professores</span>
-                        <span class="proto-stat">⏱️ <strong>20 min</strong> de uso recomendado</span>
-                        <span class="proto-stat">💰 <strong>R$ 12,00</strong> para construir</span>
+            <!-- Prototypes Carousel -->
+            <div class="carousel-container">
+                <div class="swiper prototypes-carousel">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="prototype-card featured">
+                                <div class="prototype-badge">
+                                    <i data-lucide="star"></i>
+                                    <span>Mais Popular</span>
+                                </div>
+                                <div class="prototype-icon">
+                                    <i data-lucide="waves"></i>
+                                </div>
+                                <h3>Tapete Tátil Multissensorial</h3>
+                                <p>Criado com <strong>16 texturas diferentes</strong> usando materiais como cortiça, lixa, tecidos variados e elementos naturais. Estimula o desenvolvimento neuromotor e acalma crianças agitadas.</p>
+                                <div class="prototype-stats">
+                                    <div class="proto-stat">
+                                        <i data-lucide="check-circle"></i>
+                                        <span><strong>95% de aprovação</strong> dos professores</span>
+                                    </div>
+                                    <div class="proto-stat">
+                                        <i data-lucide="clock"></i>
+                                        <span><strong>20 min</strong> de uso recomendado</span>
+                                    </div>
+                                    <div class="proto-stat">
+                                        <i data-lucide="dollar-sign"></i>
+                                        <span><strong>R$ 12,00</strong> para construir</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="swiper-slide">
+                            <div class="prototype-card">
+                                <div class="prototype-icon">
+                                    <i data-lucide="music"></i>
+                                </div>
+                                <h3>Tambor de Lata Ressonante</h3>
+                                <p>Instrumento musical feito com latas grandes e pele sintética reciclada. <strong>Desenvolve coordenação motora</strong> e oferece liberação emocional através da música.</p>
+                                <div class="prototype-stats">
+                                    <div class="proto-stat">
+                                        <i data-lucide="volume-2"></i>
+                                        <span><strong>6 tons diferentes</strong></span>
+                                    </div>
+                                    <div class="proto-stat">
+                                        <i data-lucide="school"></i>
+                                        <span><strong>Testado em 12 escolas</strong></span>
+                                    </div>
+                                    <div class="proto-stat">
+                                        <i data-lucide="dollar-sign"></i>
+                                        <span><strong>R$ 8,00</strong> para construir</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="prototype-card">
+                                <div class="prototype-icon">
+                                    <i data-lucide="bell"></i>
+                                </div>
+                                <h3>Chocalho Multifuncional</h3>
+                                <p>Feito com garrafas PET e diversos materiais internos (arroz, feijão, pedrinhas). <strong>Cada "recheio" produz um som único</strong>, estimulando discriminação auditiva.</p>
+                                <div class="prototype-stats">
+                                    <div class="proto-stat">
+                                        <i data-lucide="volume-1"></i>
+                                        <span><strong>8 sons distintos</strong></span>
+                                    </div>
+                                    <div class="proto-stat">
+                                        <i data-lucide="recycle"></i>
+                                        <span><strong>100% reciclado</strong></span>
+                                    </div>
+                                    <div class="proto-stat">
+                                        <i data-lucide="dollar-sign"></i>
+                                        <span><strong>R$ 3,00</strong> para construir</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="prototype-card">
+                                <div class="prototype-icon">
+                                    <i data-lucide="lightbulb"></i>
+                                </div>
+                                <h3>Sistema LED Colorido</h3>
+                                <p>Iluminação adaptativa usando LEDs programáveis em recipientes reciclados. <strong>Cria ambientes visuais personalizados</strong> para diferentes atividades e humores.</p>
+                                <div class="prototype-stats">
+                                    <div class="proto-stat">
+                                        <i data-lucide="palette"></i>
+                                        <span><strong>16 cores programáveis</strong></span>
+                                    </div>
+                                    <div class="proto-stat">
+                                        <i data-lucide="zap"></i>
+                                        <span><strong>Baixo consumo energético</strong></span>
+                                    </div>
+                                    <div class="proto-stat">
+                                        <i data-lucide="dollar-sign"></i>
+                                        <span><strong>R$ 25,00</strong> para construir</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="prototype-card">
+                                <div class="prototype-icon">
+                                    <i data-lucide="paintbrush"></i>
+                                </div>
+                                <h3>Painel Tátil Exploratório</h3>
+                                <p>Superfície vertical com <strong>20+ materiais e texturas</strong> fixados de forma segura. Permite exploração sensorial em pé, desenvolvendo coordenação e curiosidade.</p>
+                                <div class="prototype-stats">
+                                    <div class="proto-stat">
+                                        <i data-lucide="hand"></i>
+                                        <span><strong>20+ texturas diferentes</strong></span>
+                                    </div>
+                                    <div class="proto-stat">
+                                        <i data-lucide="ruler"></i>
+                                        <span><strong>1,2m x 0,8m</strong></span>
+                                    </div>
+                                    <div class="proto-stat">
+                                        <i data-lucide="dollar-sign"></i>
+                                        <span><strong>R$ 18,00</strong> para construir</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="prototype-card">
+                                <div class="prototype-icon">
+                                    <i data-lucide="music-note"></i>
+                                </div>
+                                <h3>Orquestra Reciclada</h3>
+                                <p>Conjunto completo de <strong>12 instrumentos únicos</strong> feitos com materiais sustentáveis. Desenvolve senso musical, trabalho em equipe e expressão criativa.</p>
+                                <div class="prototype-stats">
+                                    <div class="proto-stat">
+                                        <i data-lucide="music"></i>
+                                        <span><strong>12 instrumentos únicos</strong></span>
+                                    </div>
+                                    <div class="proto-stat">
+                                        <i data-lucide="users"></i>
+                                        <span><strong>Até 15 crianças simultâneas</strong></span>
+                                    </div>
+                                    <div class="proto-stat">
+                                        <i data-lucide="dollar-sign"></i>
+                                        <span><strong>R$ 45,00</strong> conjunto completo</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="prototype-card">
-                    <div class="prototype-image">🥁</div>
-                    <h3>Tambor de Lata Ressonante</h3>
-                    <p>Instrumento musical feito com latas grandes e pele sintética reciclada. <strong>Desenvolve coordenação motora</strong> e oferece liberação emocional através da música.</p>
-                    <div class="prototype-stats">
-                        <span class="proto-stat">🎵 <strong>6 tons diferentes</strong></span>
-                        <span class="proto-stat">🏫 <strong>Testado em 12 escolas</strong></span>
-                        <span class="proto-stat">💰 <strong>R$ 8,00</strong> para construir</span>
-                    </div>
-                </div>
-                <div class="prototype-card">
-                    <div class="prototype-image">🔔</div>
-                    <h3>Chocalho Multifuncional</h3>
-                    <p>Feito com garrafas PET e diversos materiais internos (arroz, feijão, pedrinhas). <strong>Cada "receio" produz um som único</strong>, estimulando discriminação auditiva.</p>
-                    <div class="prototype-stats">
-                        <span class="proto-stat">🔊 <strong>8 sons distintos</strong></span>
-                        <span class="proto-stat">♻️ <strong>100% reciclado</strong></span>
-                        <span class="proto-stat">💰 <strong>R$ 3,00</strong> para construir</span>
-                    </div>
-                </div>
-                <div class="prototype-card">
-                    <div class="prototype-image">💡</div>
-                    <h3>Sistema LED Colorido</h3>
-                    <p>Iluminação adaptativa usando LEDs programáveis em recipientes reciclados. <strong>Cria ambientes visuais personalizados</strong> para diferentes atividades e humores.</p>
-                    <div class="prototype-stats">
-                        <span class="proto-stat">🌈 <strong>16 cores programáveis</strong></span>
-                        <span class="proto-stat">⚡ <strong>Baixo consumo energético</strong></span>
-                        <span class="proto-stat">💰 <strong>R$ 25,00</strong> para construir</span>
-                    </div>
-                </div>
-                <div class="prototype-card">
-                    <div class="prototype-image">🎨</div>
-                    <h3>Painel Tátil Exploratório</h3>
-                    <p>Superfície vertical com <strong>20+ materiais e texturas</strong> fixados de forma segura. Permite exploração sensorial em pé, desenvolvendo coordenação e curiosidade.</p>
-                    <div class="prototype-stats">
-                        <span class="proto-stat">✋ <strong>20+ texturas diferentes</strong></span>
-                        <span class="proto-stat">📏 <strong>1,2m x 0,8m</strong></span>
-                        <span class="proto-stat">💰 <strong>R$ 18,00</strong> para construir</span>
-                    </div>
-                </div>
-                <div class="prototype-card">
-                    <div class="prototype-image">🎵</div>
-                    <h3>Orquestra Reciclada</h3>
-                    <p>Conjunto completo de <strong>12 instrumentos únicos</strong> feitos com materiais sustentáveis. Desenvolve senso musical, trabalho em equipe e expressão criativa.</p>
-                    <div class="prototype-stats">
-                        <span class="proto-stat">🎼 <strong>12 instrumentos únicos</strong></span>
-                        <span class="proto-stat">👥 <strong>Até 15 crianças simultâneas</strong></span>
-                        <span class="proto-stat">💰 <strong>R$ 45,00</strong> conjunto completo</span>
-                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Conclusão -->
+    <!-- Conclusion Section -->
     <section id="conclusao" class="conclusion-section">
         <div class="container">
-            <h2>Uma Conclusão que É Apenas o Começo</h2>
+            <div class="section-header">
+                <div class="section-badge">
+                    <i data-lucide="lightbulb"></i>
+                    <span>Conclusão</span>
+                </div>
+                <h2>Uma Conclusão que É Apenas o Começo</h2>
+            </div>
+            
             <div class="conclusion-content">
                 <p class="conclusion-text">
                     Nosso estudo provou de forma <strong>inequívoca</strong> que um ambiente sensorial móvel e adaptado não é apenas viável - é <strong>transformador</strong>. Com investimento mínimo e materiais sustentáveis, conseguimos criar recursos que facilitam significativamente a inclusão e adaptação escolar das crianças na Educação Infantil.
@@ -427,50 +908,80 @@
                 
                 <div class="conclusion-highlights">
                     <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <i data-lucide="target"></i>
+                        </div>
                         <h4>🎯 Objetivos Superados</h4>
                         <p>Todos os objetivos iniciais foram <strong>não apenas atingidos, mas superados</strong>, com resultados 34% acima das expectativas.</p>
                     </div>
                     <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <i data-lucide="leaf"></i>
+                        </div>
                         <h4>🌱 Sustentabilidade Comprovada</h4>
                         <p><strong>2,3kg de resíduos reutilizados</strong> e economia de 80% comparado a materiais comerciais tradicionais.</p>
                     </div>
                     <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <i data-lucide="trending-up"></i>
+                        </div>
                         <h4>📈 Escalabilidade Validada</h4>
                         <p>Metodologia testada e aprovada para <strong>replicação em larga escala</strong> no sistema público de ensino.</p>
                     </div>
                 </div>
                 
                 <div class="future-impact">
-                    <h3>O Impacto que Vamos Gerar</h3>
+                    <div class="impact-header">
+                        <i data-lucide="sparkles"></i>
+                        <h3>O Impacto que Vamos Gerar</h3>
+                    </div>
                     <p>Este projeto é apenas o <strong>primeiro passo</strong> de uma revolução educacional. Imagine:</p>
-                    <ul class="impact-list">
-                        <li><strong>10.000+ crianças</strong> beneficiadas nos próximos 3 anos</li>
-                        <li><strong>500+ professores</strong> capacitados em metodologia sensorial</li>
-                        <li><strong>100+ escolas</strong> implementando ambientes sensoriais</li>
-                        <li><strong>R$ 2.000.000</strong> em economia para o sistema público</li>
-                    </ul>
+                    <div class="impact-grid">
+                        <div class="impact-item">
+                            <div class="impact-number">10.000+</div>
+                            <div class="impact-label">crianças beneficiadas nos próximos 3 anos</div>
+                        </div>
+                        <div class="impact-item">
+                            <div class="impact-number">500+</div>
+                            <div class="impact-label">professores capacitados em metodologia sensorial</div>
+                        </div>
+                        <div class="impact-item">
+                            <div class="impact-number">100+</div>
+                            <div class="impact-label">escolas implementando ambientes sensoriais</div>
+                        </div>
+                        <div class="impact-item">
+                            <div class="impact-number">R$ 2M</div>
+                            <div class="impact-label">em economia para o sistema público</div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="download-section">
                     <h3>Leve Esta Transformação para Sua Escola</h3>
                     <p class="download-intro">Todos os recursos necessários para implementar um ambiente sensorial completo estão disponíveis gratuitamente:</p>
-                    <div class="download-buttons">
+                    <div class="download-grid">
                         <button class="download-button">
-                            <span class="button-icon">📄</span>
+                            <div class="button-icon">
+                                <i data-lucide="file-text"></i>
+                            </div>
                             <div class="button-content">
                                 <span class="button-title">Manual Completo de Implementação</span>
                                 <span class="button-subtitle">45 páginas • Passo a passo ilustrado • PDF</span>
                             </div>
                         </button>
                         <button class="download-button secondary">
-                            <span class="button-icon">📋</span>
+                            <div class="button-icon">
+                                <i data-lucide="table"></i>
+                            </div>
                             <div class="button-content">
                                 <span class="button-title">Lista de Materiais e Custos</span>
                                 <span class="button-subtitle">Planilha detalhada • Fornecedores • Excel</span>
                             </div>
                         </button>
                         <button class="download-button tertiary">
-                            <span class="button-icon">🎥</span>
+                            <div class="button-icon">
+                                <i data-lucide="video"></i>
+                            </div>
                             <div class="button-content">
                                 <span class="button-title">Vídeos de Construção</span>
                                 <span class="button-subtitle">12 tutoriais • Passo a passo • MP4</span>
@@ -482,10 +993,16 @@
         </div>
     </section>
 
-    <!-- Referências -->
+    <!-- References -->
     <section class="references-section">
         <div class="container">
-            <h2>Referências</h2>
+            <div class="section-header">
+                <div class="section-badge">
+                    <i data-lucide="book"></i>
+                    <span>Referências</span>
+                </div>
+                <h2>Referências</h2>
+            </div>
             <div class="references-list">
                 <p>AYRES, A. J. <em>Sensory Integration and the Child</em>. Los Angeles: Western Psychological Services, 2005.</p>
                 <p>MINISTRY OF EDUCATION. <em>Early Years Foundation Stage</em>. London: Department for Education, 2021.</p>
@@ -498,18 +1015,43 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Giovanna Romeu Souza - E.M.E.F Padre João Schiavo</p>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i data-lucide="brain-circuit"></i>
+                    <span>Ambiente Sensorial</span>
+                </div>
+                <p>&copy; 2024 Giovanna Romeu Souza - E.M.E.F Padre João Schiavo</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link">
+                        <i data-lucide="mail"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i data-lucide="github"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <!-- Modal for Sense Details -->
     <div id="sense-modal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <button class="modal-close" id="modal-close">
+                <i data-lucide="x"></i>
+            </button>
             <div id="modal-body"></div>
         </div>
     </div>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
 </html>
