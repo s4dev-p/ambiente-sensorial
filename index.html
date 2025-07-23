@@ -10,7 +10,7 @@
     <!-- Modern Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&family=Kalam:wght@300;400;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -60,7 +60,7 @@
                     <span>Conclusão</span>
                 </a>
             </div>
-            <div class="hamburger" id="hamburger">
+                            <div class="hamburger" onclick="toggleNav()">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -76,12 +76,12 @@
         </div>
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-badge">
+                <div class="hero-badge handwritten">
                     <i data-lucide="sparkles"></i>
                     <span>Projeto de Pesquisa</span>
                 </div>
                 <h1 class="hero-title">Ambiente Sensorial para <span class="gradient-text">Adaptação Escolar</span></h1>
-                <p class="hero-subtitle">
+                <p class="hero-subtitle handwritten">
                     <i data-lucide="user-round"></i>
                     <strong>Giovanna Romeu Souza</strong> (9º ano, E.M.E.F Padre João Schiavo)
                 </p>
@@ -423,7 +423,7 @@
                         <div class="swiper senses-carousel">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <div class="sense-card" data-sense="visao">
+                                    <div class="sense-card" onclick="openModal('visual')">
                                         <div class="sense-icon">
                                             <i data-lucide="eye"></i>
                                         </div>
@@ -435,7 +435,7 @@
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
-                                    <div class="sense-card" data-sense="audicao">
+                                    <div class="sense-card" onclick="openModal('auditory')">
                                         <div class="sense-icon">
                                             <i data-lucide="volume-2"></i>
                                         </div>
@@ -447,7 +447,7 @@
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
-                                    <div class="sense-card" data-sense="olfato">
+                                    <div class="sense-card" onclick="openModal('olfactory')">
                                         <div class="sense-icon">
                                             <i data-lucide="wind"></i>
                                         </div>
@@ -459,7 +459,7 @@
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
-                                    <div class="sense-card" data-sense="tato">
+                                    <div class="sense-card" onclick="openModal('tactile')">
                                         <div class="sense-icon">
                                             <i data-lucide="hand"></i>
                                         </div>
@@ -471,7 +471,7 @@
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
-                                    <div class="sense-card" data-sense="paladar">
+                                    <div class="sense-card" onclick="openModal('gustatory')">
                                         <div class="sense-icon">
                                             <i data-lucide="cherry"></i>
                                         </div>
@@ -483,7 +483,7 @@
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
-                                    <div class="sense-card" data-sense="vestibular">
+                                    <div class="sense-card" onclick="openModal('vestibular')">
                                         <div class="sense-icon">
                                             <i data-lucide="rotate-3d"></i>
                                         </div>
@@ -1020,7 +1020,7 @@
                     <i data-lucide="brain-circuit"></i>
                     <span>Ambiente Sensorial</span>
                 </div>
-                <p>&copy; 2025 Giovanna Romeu Souza - E.M.E.F Padre João Schiavo</p>
+                <p>&copy; 2024 Giovanna Romeu Souza - E.M.E.F Padre João Schiavo</p>
                 <div class="footer-social">
                     <a href="#" class="social-link">
                         <i data-lucide="mail"></i>
@@ -1036,13 +1036,37 @@
         </div>
     </footer>
 
-    <!-- Modal for Sense Details -->
-    <div id="sense-modal" class="modal">
+    <!-- Enhanced Modal for detailed sense information -->
+    <div id="senseModal" class="modal">
         <div class="modal-content">
-            <button class="modal-close" id="modal-close">
+            <button class="modal-close" onclick="closeModal()">
                 <i data-lucide="x"></i>
             </button>
-            <div id="modal-body"></div>
+            <div class="sense-detail">
+                <div class="sense-header">
+                    <div class="sense-modal-icon">
+                        <i id="modalSenseIcon" data-lucide="brain"></i>
+                    </div>
+                    <h2 id="modalSenseName">Sistema Sensorial</h2>
+                </div>
+                <p id="modalSenseDescription" class="sense-description">
+                    Descrição detalhada do sistema sensorial será carregada aqui.
+                </p>
+                <h3>💡 Como estimular de forma científica:</h3>
+                <ul id="modalStimulationList" class="stimulation-list">
+                    <!-- Stimulation methods will be dynamically inserted here -->
+                </ul>
+                <div class="sense-benefits">
+                    <h4>🎯 Benefícios Comprovados:</h4>
+                    <p id="modalSenseBenefits">
+                        Benefícios específicos serão carregados aqui.
+                    </p>
+                </div>
+                <div class="sense-frequency">
+                    <strong>📊 Parâmetros Técnicos:</strong>
+                    <span id="modalSenseFrequency">Informações técnicas aqui</span>
+                </div>
+            </div>
         </div>
     </div>
 
