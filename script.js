@@ -1,667 +1,837 @@
-// Enhanced Navigation
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('nav-menu');
-
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
+// Enhanced Navigation Toggle with Micro-interactions
+function toggleNav() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
     hamburger.classList.toggle('active');
-});
+    navMenu.classList.toggle('active');
+    
+    // Haptic feedback simulation
+    if (navigator.vibrate) {
+        navigator.vibrate(50);
+    }
+    
+    // Sound feedback simulation
+    if (window.AudioContext) {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.1);
+    }
+}
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+// Enhanced Smooth Scrolling with Easing
+function smoothScroll(target) {
+    const element = document.querySelector(target);
+    if (!element) return;
+
+    const headerOffset = 80;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    // Custom easing function
+    const easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+    
+    const startPosition = window.pageYOffset;
+    const distance = offsetPosition - startPosition;
+    const duration = 1000;
+    let start = null;
+
+    function animation(currentTime) {
+        if (start === null) start = currentTime;
+        const timeElapsed = currentTime - start;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const ease = easeInOutCubic(progress);
+        
+        window.scrollTo(0, startPosition + distance * ease);
+        
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
         }
-        // Close mobile menu if open
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-    });
-});
+    }
+    
+    requestAnimationFrame(animation);
+}
 
-// Enhanced Modal functionality for senses
-const modal = document.getElementById('sense-modal');
-const modalBody = document.getElementById('modal-body');
-const closeModal = document.getElementById('modal-close');
-
-const senseData = {
-    visao: {
-        title: 'Visão',
-        icon: '👁️',
-        description: 'A visão processa mais de 80% de todas as informações que recebemos do ambiente. Na educação infantil, estímulos visuais adequados podem reduzir a ansiedade em até 45% e melhorar a concentração das crianças.',
+// Advanced Sensory System Data with Scientific Details
+const sensoryData = {
+    visual: {
+        name: "Sistema Visual",
+        icon: "eye",
+        description: "O sistema visual processa informações luminosas através da retina, permitindo a percepção de cores, formas, movimento e profundidade. É fundamental para a orientação espacial e reconhecimento de padrões.",
         stimulation: [
-            'Cores suaves e harmônicas para relaxamento profundo (tons pastéis em 60% do ambiente)',
-            'Luzes LED coloridas programáveis para diferentes atividades (432Hz de frequência luminosa)',
-            'Objetos com formas geométricas variadas para estimular reconhecimento espacial',
-            'Contraste visual adequado (70% de diferença tonal recomendada pela neurociência)',
-            'Elementos visuais organizados seguindo a regra dos terços para harmonia',
-            'Painéis com texturas visualmente contrastantes em alturas acessíveis',
-            'Móbiles com movimento suave para tracking visual e coordenação olho-mão'
+            "🎨 Paletas de cores calmantes (azul, verde, violeta) para reduzir ansiedade",
+            "💡 Iluminação natural ou LED de espectro completo (5000K-6500K)",
+            "🌈 Elementos visuais com contraste adequado (mínimo 4.5:1)",
+            "🔄 Padrões repetitivos e simétricos para organização visual",
+            "📐 Geometrias fractais para estimulação cognitiva suave"
         ],
-        benefits: 'Melhora a concentração em 67%, reduz hiperestimulação visual e facilita o processamento de informações complexas. Ativa o córtex visual primário e secundário, desenvolvendo percepção espacial e temporal.'
+        benefits: "Melhora foco, reduz fadiga visual, aumenta concentração e cria ambiente acolhedor para aprendizagem.",
+        frequency: "Luz: 400-700nm | Refresh: 60-120Hz"
     },
-    audicao: {
-        title: 'Audição',
-        icon: '👂',
-        description: 'O sistema auditivo é fundamental para o desenvolvimento da linguagem e está diretamente conectado ao sistema límbico (emocional). Sons adequados podem reduzir o cortisol (hormônio do estresse) em 38% nas crianças.',
+    auditory: {
+        name: "Sistema Auditivo",
+        icon: "volume-2",
+        description: "O sistema auditivo processa ondas sonoras de 20Hz a 20kHz, sendo crucial para comunicação, alerta e regulação emocional. Sons específicos podem induzir estados de calma ou atenção.",
         stimulation: [
-            'Música clássica em frequências de 432Hz para harmonia cerebral e sincronização neural',
-            'Sons da natureza (chuva, pássaros, oceano) para ativação do sistema nervoso parassimpático',
-            'Instrumentos musicais de diferentes timbres e frequências (20Hz a 8kHz)',
-            'Controle rigoroso de ruídos externos (máximo 45 decibéis conforme OMS)',
-            'Atividades de escuta ativa com identificação sonora e discriminação auditiva',
-            'Texturas sonoras variadas (sussurros, batidas rítmicas) para desenvolvimento temporal',
-            'Música binaural para sincronização de ondas cerebrais alfa e theta'
+            "🎵 Sons da natureza (chuva, oceano, floresta) em 40-60 dB",
+            "🎼 Música clássica barroca (Bach, Vivaldi) para concentração",
+            "🔔 Frequências binaurais (8-13Hz) para ondas alfa",
+            "🤫 Controle de ruído ambiente (<35 dB) para reduzir distrações",
+            "🎚️ Variação dinâmica controlada para manter engajamento"
         ],
-        benefits: 'Desenvolve discriminação auditiva, melhora habilidades linguísticas em 52% e promove regulação emocional natural. Estimula o córtex auditivo e fortalece conexões neurais para linguagem.'
+        benefits: "Reduz estresse, melhora memória, facilita concentração e promove estados meditativos.",
+        frequency: "Ideal: 8-13Hz (alfa) | Volume: 40-60dB"
     },
-    olfato: {
-        title: 'Olfato',
-        icon: '👃',
-        description: 'O olfato é o único sentido conectado diretamente ao sistema límbico, processando emoções e memórias. Aromas específicos podem criar associações positivas duradouras com o ambiente escolar.',
+    tactile: {
+        name: "Sistema Tátil",
+        icon: "hand",
+        description: "O sistema tátil processa texturas, temperatura, pressão e vibração através de milhões de receptores na pele. É essencial para regulação emocional e consciência corporal.",
         stimulation: [
-            'Aromas cítricos (laranja, limão) para energia e foco - 15 minutos de exposição ideal',
-            'Lavanda para relaxamento e redução de ansiedade - 10 minutos antes atividades calmas',
-            'Plantas aromáticas naturais (hortelã, alecrim, manjericão) para oxigenação',
-            'Ambientadores naturais sem químicos agressivos (óleos essenciais puros)',
-            'Atividades culinárias com ervas aromáticas para associações positivas',
-            'Identificação de diferentes odores em recipientes seguros e não tóxicos',
-            'Sachês aromáticos com essências naturais rotativas para estimulação constante'
+            "🧸 Texturas variadas (liso, rugoso, macio) para estimulação sensorial",
+            "🌡️ Temperatura controlada (21-24°C) para conforto térmico",
+            "💺 Superfícies ergonômicas e materiais naturais (madeira, algodão)",
+            "⚡ Vibração suave (10-100Hz) para feedback tátil",
+            "🤲 Objetos manipuláveis para propriocepção"
         ],
-        benefits: 'Reduz ansiedade em 43%, melhora memória afetiva e cria vínculos positivos com o ambiente educacional. Ativa diretamente a amígdala e o hipocampo, centros de emoção e memória.'
+        benefits: "Reduz ansiedade, melhora regulação emocional, aumenta consciência corporal e facilita aprendizagem multissensorial.",
+        frequency: "Vibração: 10-100Hz | Temperatura: 21-24°C"
     },
-    tato: {
-        title: 'Tato',
-        icon: '✋',
-        description: 'O tato é o primeiro sentido a se desenvolver e possui mais terminações nervosas que qualquer outro. Estimulação tátil adequada ativa 87% das áreas cerebrais responsáveis pelo desenvolvimento cognitivo.',
+    olfactory: {
+        name: "Sistema Olfativo",
+        icon: "flower",
+        description: "O sistema olfativo está diretamente conectado ao sistema límbico, influenciando emoções e memória. Aromas específicos podem melhorar performance cognitiva e bem-estar.",
         stimulation: [
-            'Tapetes com 12+ texturas diferentes (áspero, liso, rugoso, macio, granulado)',
-            'Materiais naturais seguros: madeira lixada, pedras polidas, areia fina, folhas secas',
-            'Brinquedos táteis com diferentes temperaturas e densidades (gel, espuma, borracha)',
-            'Massinha de modelar com texturas variadas e resistências diferentes',
-            'Brincadeiras com água morna (32°C) e areia cinética para propriocepção',
-            'Tecidos com tramas diferentes (veludo, linho, seda, algodão) em painéis táteis',
-            'Esponjas naturais e sintéticas para discriminação de texturas e pressão'
+            "🌿 Lavanda para relaxamento e redução de ansiedade",
+            "🍋 Cítricos (limão, laranja) para energia e concentração",
+            "🌲 Eucalipto para clareza mental e foco",
+            "🌸 Aromas florais suaves para ambiente acolhedor",
+            "🌱 Concentrações baixas (0.1-1%) para evitar sobrecarga sensorial"
         ],
-        benefits: 'Desenvolve coordenação motora fina em 71%, melhora integração sensorial e reduz comportamentos estereotipados. Estimula o córtex somatossensorial e fortalece a mielinização neural.'
+        benefits: "Melhora humor, facilita memória, reduz estresse e cria associações positivas com aprendizagem.",
+        frequency: "Concentração: 0.1-1% | Duração: 15-30min"
     },
-    paladar: {
-        title: 'Paladar',
-        icon: '👅',
-        description: 'O paladar trabalha em conjunto com o olfato (flavor) e está ligado à exploração e descoberta. Experiências gustativas seguras enriquecem o desenvolvimento multissensorial em 34%.',
+    gustatory: {
+        name: "Sistema Gustativo",
+        icon: "candy",
+        description: "O sistema gustativo processa cinco sabores básicos e trabalha em conjunto com o olfato. Influencia humor e pode ser usado terapeuticamente em ambientes educacionais.",
         stimulation: [
-            'Degustação controlada de frutas da estação (sempre com supervisão)',
-            'Identificação dos 5 sabores básicos: doce, salgado, azedo, amargo, umami',
-            'Atividades culinárias educativas com medidas e texturas (sem cozimento)',
-            'Exploração de diferentes temperaturas alimentares (morno, frio, ambiente)',
-            'Associação sabor-cor-aroma em atividades lúdicas multissensoriais',
-            'Herbs garden: cultivo e degustação segura de ervas aromáticas',
-            'Jogos sensoriais com alimentos conhecidos e aprovados pelos pais'
+            "🍯 Sabores doces naturais (mel, frutas) para conforto",
+            "🌿 Chás de ervas (camomila, hortelã) para relaxamento",
+            "🍊 Sabores cítricos para estimular alerta",
+            "💧 Hidratação adequada para função cognitiva",
+            "⚖️ Equilíbrio de sabores para estimulação controlada"
         ],
-        benefits: 'Amplia repertório alimentar em 45%, desenvolve discriminação sensorial e estimula curiosidade exploratória natural. Ativa áreas cerebrais relacionadas à recompensa e prazer.'
+        benefits: "Reduz ansiedade alimentar, melhora humor, facilita regulação emocional e cria experiências multissensoriais positivas.",
+        frequency: "pH: 6.5-7.5 | Temperatura: 15-25°C"
     },
     vestibular: {
-        title: 'Sistema Vestibular',
-        icon: '🔄',
-        description: 'O sistema vestibular controla equilíbrio, orientação espacial e coordenação. Sua estimulação adequada melhora a regulação comportamental em 89% das crianças com dificuldades de adaptação.',
+        name: "Sistema Vestibular",
+        icon: "rotate-3d",
+        description: "O sistema vestibular, localizado no ouvido interno, controla equilíbrio, orientação espacial e coordenação. É fundamental para estabilidade emocional e atenção.",
         stimulation: [
-            'Balanços lineares suaves (frente-trás) por 5-10 minutos com supervisão',
-            'Movimentos rotatórios controlados em cadeiras giratórias (máximo 30 segundos)',
-            'Exercícios de equilíbrio em superfícies instáveis (almofadas, colchonetes)',
-            'Caminhadas em diferentes elevações e texturas de solo seguras',
-            'Brincadeiras de rolar controlado em colchonetes macios e seguros',
-            'Atividades de inversão corporal supervisionadas (de cabeça para baixo)',
-            'Propriocepção: exercícios de consciência corporal no espaço tridimensional'
+            "🪑 Assentos com balanço suave para propriocepção",
+            "⚖️ Exercícios de equilíbrio para integração sensorial",
+            "🌀 Movimentos rotatórios controlados para estimulação vestibular",
+            "🧘 Posturas estáveis para reduzir sobrecarga sensorial",
+            "🎯 Atividades de coordenação para desenvolvimento motor"
         ],
-        benefits: 'Melhora coordenação global em 78%, reduz hiperatividade e desenvolve consciência corporal e espacial. Estimula o cerebelo e melhora a integração sensorial geral.'
+        benefits: "Melhora equilíbrio emocional, reduz hiperatividade, aumenta foco e facilita autorregulação.",
+        frequency: "Movimento: 0.1-2Hz | Amplitude: 5-15°"
     }
 };
 
-// Enhanced modal functionality with benefits
-document.addEventListener('click', (e) => {
-    const senseCard = e.target.closest('.sense-card');
-    if (senseCard) {
-        const senseType = senseCard.getAttribute('data-sense');
-        const data = senseData[senseType];
-        
-        if (data) {
-            modalBody.innerHTML = `
-                <div class="sense-detail">
-                    <div class="sense-header">
-                        <span class="sense-modal-icon">${data.icon}</span>
-                        <h2>${data.title}</h2>
-                    </div>
-                    <p class="sense-description">${data.description}</p>
-                    <h3>💡 Como estimular de forma científica:</h3>
-                    <ul class="stimulation-list">
-                        ${data.stimulation.map(item => `<li>${item}</li>`).join('')}
-                    </ul>
-                    <div class="sense-benefits">
-                        <h4>🎯 Benefícios Comprovados pela Neurociência:</h4>
-                        <p><strong>${data.benefits}</strong></p>
-                    </div>
-                </div>
-            `;
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
+// Advanced Color Psychology Data
+const colorPsychology = {
+    blue: {
+        name: "Azul Calmante",
+        hex: "#4A90E2",
+        psychological: "Reduz cortisol em 23%, promove tranquilidade",
+        cognitive: "Melhora concentração e memória de trabalho",
+        physiological: "Diminui pressão arterial e frequência cardíaca"
+    },
+    green: {
+        name: "Verde Equilibrante",
+        hex: "#7ED321",
+        psychological: "Reduz fadiga mental, promove bem-estar",
+        cognitive: "Aumenta criatividade e pensamento divergente",
+        physiological: "Relaxa músculos oculares, reduz tensão"
+    },
+    purple: {
+        name: "Roxo Inspirador",
+        hex: "#9013FE",
+        psychological: "Estimula imaginação e introspecção",
+        cognitive: "Favorece pensamento abstrato e criatividade",
+        physiological: "Influencia ritmos circadianos e relaxamento"
     }
-});
-
-closeModal.addEventListener('click', () => {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-});
-
-modal.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-});
-
-// Initialize Swiper Carousels
-document.addEventListener('DOMContentLoaded', () => {
-    // Problem Carousel
-    if (document.querySelector('.problem-carousel')) {
-        new Swiper('.problem-carousel', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                }
-            }
-        });
-    }
-
-    // Objectives Carousel
-    if (document.querySelector('.objectives-carousel')) {
-        new Swiper('.objectives-carousel', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            autoplay: {
-                delay: 6000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                }
-            }
-        });
-    }
-
-    // Senses Carousel
-    if (document.querySelector('.senses-carousel')) {
-        new Swiper('.senses-carousel', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                },
-                768: {
-                    slidesPerView: 3,
-                },
-                1024: {
-                    slidesPerView: 4,
-                }
-            }
-        });
-    }
-
-    // Color Concepts Carousel
-    if (document.querySelector('.color-carousel')) {
-        new Swiper('.color-carousel', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                }
-            }
-        });
-    }
-
-    // Metrics Carousel
-    if (document.querySelector('.metrics-carousel')) {
-        new Swiper('.metrics-carousel', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                }
-            }
-        });
-    }
-
-    // Materials Carousel
-    if (document.querySelector('.materials-carousel')) {
-        new Swiper('.materials-carousel', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            autoplay: {
-                delay: 4500,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                }
-            }
-        });
-    }
-
-    // Prototypes Carousel
-    if (document.querySelector('.prototypes-carousel')) {
-        new Swiper('.prototypes-carousel', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            autoplay: {
-                delay: 5500,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                }
-            }
-        });
-    }
-});
-
-// Enhanced download button functionality
-document.addEventListener('click', (e) => {
-    const downloadButton = e.target.closest('.download-button');
-    if (downloadButton) {
-        const buttonTitle = downloadButton.querySelector('.button-title');
-        const buttonSubtitle = downloadButton.querySelector('.button-subtitle');
-        const buttonIcon = downloadButton.querySelector('.button-icon i');
-        
-        if (buttonTitle && buttonSubtitle && buttonIcon) {
-            const originalTitle = buttonTitle.textContent;
-            const originalSubtitle = buttonSubtitle.textContent;
-            const originalIcon = buttonIcon.getAttribute('data-lucide');
-            
-            // Stage 1: Preparing
-            buttonIcon.setAttribute('data-lucide', 'loader-2');
-            lucide.createIcons();
-            buttonTitle.textContent = 'Preparando download...';
-            buttonSubtitle.textContent = 'Compilando recursos';
-            downloadButton.disabled = true;
-            downloadButton.style.opacity = '0.8';
-            
-            setTimeout(() => {
-                // Stage 2: Processing
-                buttonIcon.setAttribute('data-lucide', 'package');
-                lucide.createIcons();
-                buttonTitle.textContent = 'Compactando arquivos...';
-                buttonSubtitle.textContent = 'Otimizando conteúdo';
-                
-                setTimeout(() => {
-                    // Stage 3: Complete
-                    buttonIcon.setAttribute('data-lucide', 'check-circle');
-                    lucide.createIcons();
-                    buttonTitle.textContent = 'Download iniciado!';
-                    buttonSubtitle.textContent = 'Verifique sua pasta Downloads';
-                    downloadButton.style.background = 'var(--success-600)';
-                    
-                    setTimeout(() => {
-                        // Reset
-                        buttonIcon.setAttribute('data-lucide', originalIcon || 'file-text');
-                        lucide.createIcons();
-                        buttonTitle.textContent = originalTitle;
-                        buttonSubtitle.textContent = originalSubtitle;
-                        downloadButton.disabled = false;
-                        downloadButton.style.opacity = '1';
-                        downloadButton.style.background = '';
-                    }, 3000);
-                }, 2000);
-            }, 1500);
-        }
-    }
-});
-
-// Intersection Observer for scroll animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
 };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            
-            // Add special animation for stat counters
-            if (entry.target.classList.contains('stat-number') || 
-                entry.target.classList.contains('result-percentage') ||
-                entry.target.classList.contains('metric-number')) {
-                animateCounter(entry.target);
-            }
-        }
-    });
-}, observerOptions);
-
-// Counter animation function
-function animateCounter(element) {
-    const text = element.textContent;
-    const number = parseInt(text.replace(/[^\d]/g, ''));
+// Enhanced Modal Functionality with Animations
+function openModal(senseType) {
+    const modal = document.getElementById('senseModal');
+    const data = sensoryData[senseType];
     
-    if (number && !element.dataset.animated) {
-        element.dataset.animated = 'true';
-        const suffix = text.replace(/[\d]/g, '');
-        let current = 0;
-        const duration = 2000;
-        const increment = number / (duration / 16);
-        
-        const counter = setInterval(() => {
-            current += increment;
-            if (current >= number) {
-                element.textContent = number + suffix;
-                clearInterval(counter);
-            } else {
-                element.textContent = Math.floor(current) + suffix;
-            }
-        }, 16);
+    if (!data) return;
+    
+    // Populate modal content with rich animations
+    document.getElementById('modalSenseName').textContent = data.name;
+    document.getElementById('modalSenseIcon').setAttribute('data-lucide', data.icon);
+    document.getElementById('modalSenseDescription').textContent = data.description;
+    
+    const stimulationList = document.getElementById('modalStimulationList');
+    stimulationList.innerHTML = '';
+    
+    data.stimulation.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        li.style.animationDelay = `${index * 0.1}s`;
+        li.classList.add('fade-in-up');
+        stimulationList.appendChild(li);
+    });
+    
+    document.getElementById('modalSenseBenefits').textContent = data.benefits;
+    document.getElementById('modalSenseFrequency').textContent = data.frequency || 'Variável conforme estímulo';
+    
+    // Show modal with advanced animation
+    modal.style.display = 'flex';
+    modal.classList.add('modal-opening');
+    document.body.style.overflow = 'hidden';
+    
+    // Haptic feedback
+    if (navigator.vibrate) {
+        navigator.vibrate([50, 50, 100]);
     }
+    
+    // Re-initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+    
+    // Focus management for accessibility
+    setTimeout(() => {
+        const closeButton = modal.querySelector('.modal-close');
+        if (closeButton) closeButton.focus();
+    }, 300);
 }
 
-// Apply scroll animations
-document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll(`
-        .stat-card, .objective-card, .problem-card, .sense-card, 
-        .prototype-card, .metric-card, .material-item, .highlight-card,
-        .timeline-item, .color-concept, .stat-number, .result-percentage,
-        .metric-number, .floating-card
-    `);
+function closeModal() {
+    const modal = document.getElementById('senseModal');
+    modal.classList.add('modal-closing');
     
+    setTimeout(() => {
+        modal.style.display = 'none';
+        modal.classList.remove('modal-opening', 'modal-closing');
+        document.body.style.overflow = '';
+    }, 300);
+    
+    // Return focus to trigger element
+    const activeSenseCard = document.querySelector('.sense-card:focus');
+    if (activeSenseCard) activeSenseCard.focus();
+}
+
+// Enhanced Download Simulation with Stages
+async function simulateDownload(button, fileName) {
+    const icon = button.querySelector('i[data-lucide]');
+    const text = button.querySelector('.button-title');
+    const subtitle = button.querySelector('.button-subtitle');
+    
+    const stages = [
+        { icon: 'loader-2', text: 'Preparando...', subtitle: 'Iniciando download', duration: 1000 },
+        { icon: 'download', text: 'Baixando...', subtitle: 'Processando arquivo', duration: 2000 },
+        { icon: 'check-circle', text: 'Concluído!', subtitle: 'Download finalizado', duration: 1000 }
+    ];
+    
+    button.disabled = true;
+    button.style.pointerEvents = 'none';
+    
+    for (let stage of stages) {
+        // Update visual state
+        icon.setAttribute('data-lucide', stage.icon);
+        text.textContent = stage.text;
+        subtitle.textContent = stage.subtitle;
+        
+        // Add rotation animation for loader
+        if (stage.icon === 'loader-2') {
+            icon.style.animation = 'spin 1s linear infinite';
+        } else {
+            icon.style.animation = '';
+        }
+        
+        // Add success glow for completion
+        if (stage.icon === 'check-circle') {
+            button.style.boxShadow = '0 0 30px rgba(34, 197, 94, 0.6)';
+            button.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+        }
+        
+        // Re-initialize icons and wait
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+        
+        await new Promise(resolve => setTimeout(resolve, stage.duration));
+    }
+    
+    // Reset button after delay
+    setTimeout(() => {
+        icon.setAttribute('data-lucide', 'download');
+        text.textContent = fileName.replace('.pdf', '');
+        subtitle.textContent = 'Clique para baixar';
+        button.style.boxShadow = '';
+        button.style.background = '';
+        button.disabled = false;
+        button.style.pointerEvents = '';
+        
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    }, 2000);
+}
+
+// Advanced Intersection Observer with Multiple Animation Types
+function initScrollAnimations() {
+    const animationOptions = {
+        threshold: 0.1,
+        rootMargin: '-10% 0px -10% 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                
+                // Determine animation type based on element class
+                if (target.classList.contains('fade-in')) {
+                    target.style.opacity = '1';
+                    target.style.transform = 'translateY(0)';
+                } else if (target.classList.contains('slide-in-left')) {
+                    target.style.opacity = '1';
+                    target.style.transform = 'translateX(0)';
+                } else if (target.classList.contains('slide-in-right')) {
+                    target.style.opacity = '1';
+                    target.style.transform = 'translateX(0)';
+                } else if (target.classList.contains('scale-in')) {
+                    target.style.opacity = '1';
+                    target.style.transform = 'scale(1)';
+                } else if (target.classList.contains('rotate-in')) {
+                    target.style.opacity = '1';
+                    target.style.transform = 'rotate(0deg) scale(1)';
+                }
+                
+                // Add stagger animation for children
+                const children = target.querySelectorAll('.stagger-child');
+                children.forEach((child, index) => {
+                    setTimeout(() => {
+                        child.style.opacity = '1';
+                        child.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+                
+                observer.unobserve(target);
+            }
+        });
+    }, animationOptions);
+
+    // Observe elements with animation classes
+    const animatedElements = document.querySelectorAll(`
+        .fade-in, .slide-in-left, .slide-in-right, .scale-in, .rotate-in,
+        .problem-card, .objective-card, .sense-card, .color-concept,
+        .result-highlight, .metric-card, .material-item, .prototype-card,
+        .highlight-card, .hero-stat, .timeline-item
+    `);
+
     animatedElements.forEach(el => {
+        // Set initial state
         el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+        
+        // Set specific initial transforms
+        if (el.classList.contains('slide-in-left')) {
+            el.style.transform = 'translateX(-50px)';
+        } else if (el.classList.contains('slide-in-right')) {
+            el.style.transform = 'translateX(50px)';
+        } else if (el.classList.contains('scale-in')) {
+            el.style.transform = 'scale(0.8)';
+        } else if (el.classList.contains('rotate-in')) {
+            el.style.transform = 'rotate(-10deg) scale(0.8)';
+        } else {
+            el.style.transform = 'translateY(30px)';
+        }
+        
         observer.observe(el);
     });
-});
+}
 
-// Enhanced navbar behavior
-let lastScrollY = window.scrollY;
-let ticking = false;
+// Enhanced Counter Animation with Easing
+function animateCounter(element, start, end, duration, suffix = '') {
+    const startTime = performance.now();
+    const difference = end - start;
+    
+    function updateCounter(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function (ease-out)
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(start + difference * eased);
+        
+        element.textContent = current + suffix;
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+        }
+    }
+    
+    requestAnimationFrame(updateCounter);
+}
 
-function updateNavbar() {
+// Advanced Navbar Hide/Show with Momentum
+function initNavbarBehavior() {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
     const navbar = document.querySelector('.navbar');
     
-    if (window.scrollY > lastScrollY && window.scrollY > 100) {
-        navbar.style.transform = 'translateY(-100%)';
-    } else {
-        navbar.style.transform = 'translateY(0)';
+    function updateNavbar() {
+        const scrollY = window.scrollY;
+        const scrollDirection = scrollY > lastScrollY ? 'down' : 'up';
+        const scrollDistance = Math.abs(scrollY - lastScrollY);
+        
+        if (scrollY > 100) {
+            if (scrollDirection === 'down' && scrollDistance > 5) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else if (scrollDirection === 'up' && scrollDistance > 5) {
+                navbar.style.transform = 'translateY(0)';
+            }
+        } else {
+            navbar.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollY = scrollY;
+        ticking = false;
     }
     
-    lastScrollY = window.scrollY;
-    ticking = false;
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateNavbar);
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', requestTick);
 }
 
-window.addEventListener('scroll', () => {
-    if (!ticking) {
-        requestAnimationFrame(updateNavbar);
-        ticking = true;
+// Active Navigation Link Highlighting
+function initActiveNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+    const sections = Array.from(navLinks).map(link => 
+        document.querySelector(link.getAttribute('href'))
+    ).filter(Boolean);
+    
+    function updateActiveLink() {
+        const scrollPos = window.scrollY + 100;
+        
+        for (let i = sections.length - 1; i >= 0; i--) {
+            const section = sections[i];
+            if (section.offsetTop <= scrollPos) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                navLinks[i]?.classList.add('active');
+                break;
+            }
+        }
     }
-});
-
-// Active navigation state
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
     
-    let currentSection = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        const sectionHeight = section.offsetHeight;
-        
-        if (sectionTop <= 100 && sectionTop + sectionHeight > 100) {
-            currentSection = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// Smooth reveal for hero elements
-document.addEventListener('DOMContentLoaded', () => {
-    const heroElements = document.querySelectorAll('.hero-badge, .hero-title, .hero-subtitle, .hero-description, .hero-stats, .hero-actions');
-    
-    heroElements.forEach((el, index) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        
-        setTimeout(() => {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-        }, 200 * index);
-    });
-});
-
-// Enhanced form validation for potential contact forms
-function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
+    window.addEventListener('scroll', updateActiveLink);
+    updateActiveLink(); // Initial call
 }
 
-// Keyboard navigation for modal
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.style.display === 'block') {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+// Enhanced Particle System for Hero Background
+function initParticleSystem() {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const hero = document.querySelector('.hero');
+    
+    canvas.style.position = 'absolute';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.opacity = '0.3';
+    canvas.style.zIndex = '1';
+    
+    hero.appendChild(canvas);
+    
+    function resizeCanvas() {
+        canvas.width = hero.offsetWidth;
+        canvas.height = hero.offsetHeight;
     }
-});
-
-// Accessibility improvements
-document.addEventListener('DOMContentLoaded', () => {
-    // Add proper ARIA labels
-    const carousels = document.querySelectorAll('.swiper');
-    carousels.forEach((carousel, index) => {
-        carousel.setAttribute('aria-label', `Carrossel ${index + 1}`);
-        carousel.setAttribute('role', 'region');
-    });
     
-    // Add loading states for images
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-        img.addEventListener('load', () => {
-            img.style.opacity = '1';
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.size = Math.random() * 2 + 1;
+            this.alpha = Math.random() * 0.5 + 0.2;
+        }
+        
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        }
+        
+        draw() {
+            ctx.globalAlpha = this.alpha;
+            ctx.fillStyle = '#00d4ff';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+    
+    const particles = Array.from({ length: 50 }, () => new Particle());
+    
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
         });
-        img.style.opacity = '0';
-        img.style.transition = 'opacity 0.3s ease';
-    });
-});
-
-// Performance optimization: Lazy loading for non-critical content
-const lazyLoad = () => {
-    const lazyElements = document.querySelectorAll('[data-lazy]');
+        
+        requestAnimationFrame(animate);
+    }
     
-    lazyElements.forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight) {
-            el.removeAttribute('data-lazy');
-            // Load content here
+    resizeCanvas();
+    animate();
+    
+    window.addEventListener('resize', resizeCanvas);
+}
+
+// Advanced Carousel Configurations with Touch Gestures
+function initCarousels() {
+    const carouselConfigs = {
+        '.problems-carousel': {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            autoplay: { delay: 4000 },
+            loop: true,
+            effect: 'coverflow',
+            coverflowEffect: {
+                rotate: 20,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: { 
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            },
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
+            }
+        },
+        '.objectives-carousel': {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            autoplay: { delay: 5000 },
+            loop: true,
+            effect: 'cards',
+            cardsEffect: {
+                perSlideOffset: 8,
+                perSlideRotate: 2,
+                rotate: true,
+                slideShadows: true
+            },
+            pagination: { 
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            breakpoints: {
+                768: { slidesPerView: 2, effect: 'slide' },
+                1024: { slidesPerView: 3, effect: 'slide' }
+            }
+        },
+        '.senses-carousel': {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            autoplay: { delay: 3500 },
+            loop: true,
+            effect: 'cube',
+            cubeEffect: {
+                shadow: true,
+                slideShadows: true,
+                shadowOffset: 20,
+                shadowScale: 0.94
+            },
+            pagination: { 
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            breakpoints: {
+                768: { slidesPerView: 2, effect: 'slide' },
+                1024: { slidesPerView: 3, effect: 'slide' }
+            }
+        }
+    };
+    
+    Object.entries(carouselConfigs).forEach(([selector, config]) => {
+        const container = document.querySelector(selector);
+        if (container && typeof Swiper !== 'undefined') {
+            new Swiper(selector, config);
         }
     });
-};
+}
 
-window.addEventListener('scroll', lazyLoad);
-window.addEventListener('resize', lazyLoad);
+// Enhanced Theme Switching (Future Feature)
+function initThemeSystem() {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    function applyTheme(isDark) {
+        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        
+        // Animate theme transition
+        document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+    }
+    
+    prefersDark.addEventListener('change', (e) => applyTheme(e.matches));
+    applyTheme(prefersDark.matches);
+}
 
-// Initialize tooltips for accessibility
-document.addEventListener('DOMContentLoaded', () => {
-    const tooltipElements = document.querySelectorAll('[title]');
-    tooltipElements.forEach(el => {
-        el.addEventListener('mouseenter', (e) => {
-            const tooltip = document.createElement('div');
-            tooltip.className = 'tooltip';
-            tooltip.textContent = e.target.getAttribute('title');
-            tooltip.style.cssText = `
-                position: absolute;
-                background: var(--gray-900);
-                color: white;
-                padding: 0.5rem 1rem;
-                border-radius: 0.5rem;
-                font-size: 0.875rem;
-                z-index: 9999;
-                pointer-events: none;
-                opacity: 0;
-                transition: opacity 0.2s ease;
-            `;
-            document.body.appendChild(tooltip);
+// Enhanced Performance Monitoring
+function initPerformanceMonitoring() {
+    if ('performance' in window) {
+        window.addEventListener('load', () => {
+            const perfData = performance.getEntriesByType('navigation')[0];
+            const loadTime = perfData.loadEventEnd - perfData.loadEventStart;
             
-            const rect = e.target.getBoundingClientRect();
-            tooltip.style.left = rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + 'px';
-            tooltip.style.top = rect.top - tooltip.offsetHeight - 10 + 'px';
+            console.log(`🚀 Page Load Performance:
+                - Load Time: ${loadTime}ms
+                - DOM Ready: ${perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart}ms
+                - First Paint: ${performance.getEntriesByType('paint')[0]?.startTime || 'N/A'}ms
+            `);
             
-            setTimeout(() => tooltip.style.opacity = '1', 10);
-            
-            e.target.addEventListener('mouseleave', () => {
-                tooltip.remove();
-            }, { once: true });
+            // Sustainable design metrics
+            if (loadTime > 3000) {
+                console.warn('⚠️ Page load time exceeds sustainable design guidelines (>3s)');
+            }
         });
-    });
-});
+    }
+}
 
-// Console welcome message
-console.log(`
-🧠 Ambiente Sensorial para Adaptação Escolar
-📊 Sistema de pesquisa desenvolvido por Giovanna Romeu Souza
-🎨 Design moderno e acessível implementado
-✨ Todos os recursos carregados com sucesso!
+// Welcome Message with ASCII Art
+function showWelcomeMessage() {
+    console.log(`
+    🌟 AMBIENTE SENSORIAL PARA ADAPTAÇÃO ESCOLAR 🌟
+    
+    ╔══════════════════════════════════════════════════╗
+    ║  Projeto de Pesquisa - Giovanna Romeu Souza      ║
+    ║  Design: Neumorphism + Glassmorphism + Big Blocks ║
+    ║  Tech: Vivid Glow + Sketchbook + Modern UI/UX    ║
+    ╚══════════════════════════════════════════════════╝
+    
+    🎨 Estilos Aplicados:
+    ✨ Neumorphism - Superfícies suaves em relevo
+    🔮 Glassmorphism - Transparências e blur effects
+    📐 Big Blocks - Contraste vívido e impacto visual
+    🌈 Vivid Glow - Cores intensas e luminosas
+    ✏️ Sketchbook - Elementos desenhados à mão
+    📝 Tipografia Impactante - Fontes contundentes
+    🎬 Microinterações - Animações sutis e feedback
+    📱 Design Responsivo - 100% adaptativo
+    🌱 Design Sustentável - Otimizado para performance
+    
+    Desenvolvido com ❤️ e tecnologias modernas
+    `);
+}
 
-📧 Para mais informações sobre este projeto inovador, entre em contato.
-`);
-
-// Initialize everything when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
+// Main Initialization Function
+function initializeApp() {
+    // Core functionality
+    initScrollAnimations();
+    initNavbarBehavior();
+    initActiveNavigation();
+    initCarousels();
+    
+    // Enhanced features
+    initParticleSystem();
+    initThemeSystem();
+    initPerformanceMonitoring();
+    
     // Initialize Lucide icons
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
     
-    // Add smooth transitions to all interactive elements
-    const interactiveElements = document.querySelectorAll('button, a, .card, .stat');
-    interactiveElements.forEach(el => {
-        if (!el.style.transition) {
-            el.style.transition = 'all 0.3s ease';
-        }
+    // Animate hero elements on load
+    setTimeout(() => {
+        const heroElements = document.querySelectorAll('.hero-badge, .hero-title, .hero-subtitle, .hero-description, .hero-actions');
+        heroElements.forEach((el, index) => {
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, index * 200);
+        });
+    }, 500);
+    
+    // Animate counters when visible
+    const counterElements = document.querySelectorAll('.stat-number');
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                const finalValue = parseInt(target.textContent);
+                const suffix = target.textContent.replace(/\d/g, '');
+                
+                animateCounter(target, 0, finalValue, 2000, suffix);
+                counterObserver.unobserve(target);
+            }
+        });
     });
     
-    // Initialize any additional functionality
-    console.log('🚀 Página totalmente carregada e otimizada!');
+    counterElements.forEach(el => {
+        el.style.opacity = '0';
+        counterObserver.observe(el);
+    });
+    
+    // Show welcome message
+    showWelcomeMessage();
+}
+
+// Event Listeners
+document.addEventListener('DOMContentLoaded', initializeApp);
+
+// Smooth scroll for anchor links
+document.addEventListener('click', (e) => {
+    const target = e.target.closest('a[href^="#"]');
+    if (target) {
+        e.preventDefault();
+        smoothScroll(target.getAttribute('href'));
+        
+        // Close mobile menu if open
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    }
 });
+
+// Enhanced keyboard navigation
+document.addEventListener('keydown', (e) => {
+    // Close modal with Escape key
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('senseModal');
+        if (modal && modal.style.display === 'flex') {
+            closeModal();
+        }
+    }
+    
+    // Toggle navigation with Enter/Space on hamburger
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('hamburger')) {
+        e.preventDefault();
+        toggleNav();
+    }
+});
+
+// Enhanced window resize handling
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        // Reinitialize carousels on significant resize
+        if (typeof Swiper !== 'undefined') {
+            document.querySelectorAll('.swiper').forEach(swiperEl => {
+                if (swiperEl.swiper) {
+                    swiperEl.swiper.update();
+                }
+            });
+        }
+    }, 250);
+});
+
+// Accessibility: Reduce motion for users who prefer it
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.style.setProperty('--transition-fast', '0.01ms');
+    document.documentElement.style.setProperty('--transition-normal', '0.01ms');
+    document.documentElement.style.setProperty('--transition-slow', '0.01ms');
+    document.documentElement.style.setProperty('--transition-bounce', '0.01ms');
+}
+
+// Service Worker for Enhanced Performance (Future Enhancement)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        // Service worker registration would go here
+        console.log('💡 Service Worker support detected - Ready for PWA features');
+    });
+}
+
+// Enhanced error handling with user feedback
+window.addEventListener('error', (e) => {
+    console.error('❌ Application Error:', e.error);
+    
+    // Show user-friendly error message (non-intrusive)
+    const errorNotification = document.createElement('div');
+    errorNotification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #ff006e, #ff9500);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(255, 0, 110, 0.3);
+        z-index: 9999;
+        font-size: 14px;
+        backdrop-filter: blur(16px);
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+    `;
+    errorNotification.textContent = 'Algo deu errado, mas continue explorando! 🚀';
+    
+    document.body.appendChild(errorNotification);
+    
+    // Animate in
+    setTimeout(() => {
+        errorNotification.style.opacity = '1';
+        errorNotification.style.transform = 'translateY(0)';
+    }, 100);
+    
+    // Remove after delay
+    setTimeout(() => {
+        errorNotification.style.opacity = '0';
+        errorNotification.style.transform = 'translateY(-20px)';
+        setTimeout(() => errorNotification.remove(), 300);
+    }, 5000);
+});
+
+// Export functions for testing and external use
+window.SensorialApp = {
+    toggleNav,
+    smoothScroll,
+    openModal,
+    closeModal,
+    simulateDownload,
+    animateCounter
+};
